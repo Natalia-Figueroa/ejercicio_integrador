@@ -37,7 +37,7 @@ const knex = require("knex")({
     port: 5432,
     user: "postgres",
     password: "Admin2022",
-    database: "figuritas",
+    database: "postgres",
   },
 });
 
@@ -71,6 +71,7 @@ app.get("/usuarios", validateJWT, (req, res) => {
       nombre: "nombre",
       mail: "mail",
     })
+    .from("usuarios")
     .then((result) => {
       return res.json({ success: true, entries: result });
     })
@@ -83,57 +84,6 @@ app.get("/usuarios", validateJWT, (req, res) => {
     });
 });
 
-// EN QUE PUERTO SE ESTA ESCUCHANDO
-//EL PORT ESTA GUARDADO ARRIBA EN UNA CONSTANTE
-
 app.listen(port, function () {
   console.log("App corriendo en el puerto 8088");
 });
-
-// function App() {
-//   return (
-//     <div>
-//       {tengo ? (
-//         <button onClick={numeroDeFigurita}>Deje de tener</button>
-//       ) : (
-//         <button onClick={tengoFigurita}>Tengo</button>
-//       )}
-//     </div>
-//   );
-
-//   const tengoFigurita = (numeroDeFigurita, tengoFigurita) => {
-//     fetch(`/figurita/${numeroDeFigurita}`, {
-//       method: "PUT",
-//       body: {
-//         tengo: tengoFigurita,
-//       },
-//     }).then((r) => {
-//       r.json();
-//     });
-//   };
-// }
-
-// CON MATHI COMO DESDE EL FRONT VER LA FIGURITA QUE TENGO
-
-// const tengoFigurita = (numeroDeFigurita, tengoFigurita) => {
-//   fetch(`/figurita/${numeroDeFigurita}`, {
-//     method: "PUT",
-//     body: {
-//       tengo: tengoFigurita,
-//     },
-//   }).then((r) => {
-//     r.json();
-//   });
-// };
-
-// const componente = ({ numeroDeFigurita, tengo }) => {
-//   return (
-//     <div>
-//       {tengo ? (
-//         <button onClick={numeroDeFigurita}>Deje de tener</button>
-//       ) : (
-//         <button onClick={tengoFigurita}>Tengo</button>
-//       )}
-//     </div>
-//   );
-// };
